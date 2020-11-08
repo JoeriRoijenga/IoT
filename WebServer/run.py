@@ -14,8 +14,13 @@ def setupConnection():
 
 
 def connectDB():
-	if 'conn' not in globals() and 'curs' not in globals():
+	if 'conn' not in globals() && 'curs' not in globals():
 		setupConnection()
+		print("created conn and curs")
+
+
+	if 'conn' in globals() && 'curs' in globals():
+		print("conn and curs exist")
 
 	conn = sqlite3.connect('../espData.db')
 	curs = conn.cursor()
