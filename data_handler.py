@@ -1,4 +1,4 @@
-from time import strftime
+from time import strftime, now
 import paho.mqtt.client as mqtt
 import sqlite3
 
