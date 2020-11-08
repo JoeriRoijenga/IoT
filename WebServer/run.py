@@ -7,6 +7,8 @@ app = Flask(__name__)
 
 import sqlite3
 
+conn = sqlite3.connect('../espData.db')
+curs = conn.cursor()
 
 def setupConnection():
 	global conn
@@ -22,8 +24,7 @@ def connectDB():
 	if 'conn' in globals() and 'curs' in globals():
 		print("conn and curs exist")
 
-	conn = sqlite3.connect('../espData.db')
-	curs = conn.cursor()
+	
 
 
 def disconnectDB():
