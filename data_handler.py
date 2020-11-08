@@ -1,4 +1,4 @@
-from time import gmtime, strftime
+from time import strftime
 import paho.mqtt.client as mqtt
 import sqlite3
 
@@ -22,7 +22,7 @@ def on_connect(client, userdata, flags, rc):
 
 # The callback for when a PUBLISH message is received from the server.
 def on_message(client, userdata, msg):
-    theTime = strftime("%Y-%m-%d %H:%M:%S", datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
+    theTime = strftime("%Y-%m-%d %H:%M:%S", now().strftime("%Y-%m-%d %H:%M:%S"))
 
     result = (theTime + "\t" + str(msg.payload))
     print(msg.topic + ":\t" + result)
