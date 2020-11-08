@@ -12,6 +12,9 @@ conn=sqlite3.connect('../espData.db')
 curs=conn.cursor()
 
 
+if __name__ == "__main__":
+   app.run(host='0.0.0.0', port=80, debug=False)
+
 # Retrieve LAST data from database
 def getLastData():
 	for row in curs.execute("SELECT * FROM ESP_data ORDER BY timestamp DESC LIMIT 1"):
