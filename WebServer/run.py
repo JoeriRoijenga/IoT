@@ -10,6 +10,9 @@ def getData():
 		time = str(row[0])
 		temp = row[1]
 		hum = row[2]
+		print(time)
+		print(temp)
+		print(hum)
 	conn.close()
 	return time, temp, hum
 
