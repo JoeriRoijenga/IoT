@@ -22,17 +22,17 @@ def on_connect(client, userdata, flags, rc):
 
 # The callback for when a PUBLISH message is received from the server.
 def on_message(client, userdata, msg):
-    theTime = strftime("%Y-%m-%d %H:%M:%S", localtime())
+    theTime = strftime("%Y-%m-%d %H:%M:%S", datetime.now().strftime("%Y-%m-%d %H:%M:%S"))
 
     result = (theTime + "\t" + str(msg.payload))
     print(msg.topic + ":\t" + result)
     if msg.topic == temperature_topic:
-        dataTuple[0] = str(msg.payload)
+        dataTuple[0] = str(msg.payload)[2:-1]
     if msg.topic == humidity_topic:
-        dataTuple[1] = str(msg.payload)
+        dataTuple[1] = str(msg.payload)[2:-1]
         #return
     if msg.topic == pressure_topic:
-        dataTuple[2] = str(msg.payload)
+        dataTuple[2] = str(msg.payload)[2:-1]
     if dataTuple[0] != -1 and dataTuple[1] != -1 and dataTuple[2] != -1:
         writeToDb(theTime, dataTuple[0], dataTuple[1], dataTuple[2])
     return
