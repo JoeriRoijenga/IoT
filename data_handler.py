@@ -12,7 +12,7 @@ dataTuple = [-1,-1,-1]
 # The callback for when the client receives a CONNACK response from the server.
 def on_connect(client, userdata, flags, rc):
     print("Connected with result code "+str(rc))
-    print("test van joeri")
+
     # Subscribing in on_connect() means that if we lose the connection and
     # reconnect then subscriptions will be renewed.
     client.subscribe(temperature_topic)
@@ -26,14 +26,14 @@ def on_message(client, userdata, msg):
 
     result = (theTime + "\t" + str(msg.payload))
     print(msg.topic + ":\t" + result)
-    if (msg.topic == temperature_topic):
+    if msg.topic == temperature_topic:
         dataTuple[0] = str(msg.payload)
-    if (msg.topic == humidity_topic):
+    if msg.topic == humidity_topic:
         dataTuple[1] = str(msg.payload)
         #return
-    if (msg.topic == pressure_topic):
+    if msg.topic == pressure_topic:
         dataTuple[2] = str(msg.payload)
-    if (dataTuple[0] != -1 and dataTuple[1] != -1 and dataTuple[2] != -1):
+    if dataTuple[0] != -1 and dataTuple[1] != -1 and dataTuple[2] != -1:
         writeToDb(theTime, dataTuple[0], dataTuple[1], dataTuple[2])
     return
 
