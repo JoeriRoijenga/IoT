@@ -4,7 +4,7 @@ import io
 from flask import Flask, render_template, send_file, make_response, request
 app = Flask(__name__)
 import sqlite3
-conn=sqlite3.connect('../sensorsData.db')
+conn=sqlite3.connect('../espData.db')
 curs=conn.cursor()
 
 
@@ -19,7 +19,7 @@ def getLastData():
 
 
 def getHistData (numSamples):
-	curs.execute("SELECT * FROM DHT_data ORDER BY timestamp DESC LIMIT "+str(numSamples))
+	curs.execute("SELECT * FROM ESP_data ORDER BY timestamp DESC LIMIT "+str(numSamples))
 	data = curs.fetchall()
 	dates = []
 	temps = []
@@ -32,7 +32,7 @@ def getHistData (numSamples):
 
 
 def maxRowsTable():
-	for row in curs.execute("select COUNT(temp) from  DHT_data"):
+	for row in curs.execute("select COUNT(temp) from  ESP_data"):
 		maxNumberRows=row[0]
 	return maxNumberRows
 
