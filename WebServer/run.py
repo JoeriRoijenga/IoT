@@ -14,7 +14,7 @@ def setupConnection():
 
 
 def connectDB():
-	if !'myVar' in globals():
+	if 'myVar' not in globals():
 		setupConnection()
 
 	conn = sqlite3.connect('../espData.db')
