@@ -28,12 +28,12 @@ def on_message(client, userdata, msg):
     result = (theTime + "\t" + str(msg.payload))
     print(msg.topic + ":\t" + result)
     if msg.topic == temperature_topic:
-        dataTuple[0] = str(msg.payload)[2:-1]
+        dataTuple[0] = str(msg.payload)
     if msg.topic == humidity_topic:
-        dataTuple[1] = str(msg.payload)[2:-1]
+        dataTuple[1] = str(msg.payload)
         #return
     if msg.topic == pressure_topic:
-        dataTuple[2] = str(msg.payload)[2:-1]
+        dataTuple[2] = str(msg.payload)
     if dataTuple[0] != -1 and dataTuple[1] != -1 and dataTuple[2] != -1:
         writeToDb(theTime, dataTuple[0], dataTuple[1], dataTuple[2])
     return
