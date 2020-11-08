@@ -26,10 +26,10 @@ def on_message(client, userdata, msg):
 
     result = (theTime + "\t" + str(msg.payload))
     print(msg.topic + ":\t" + result)
-    if (msg.topic == temperature_topic):
+    if msg.topic == temperature_topic:
         dataTuple[0] = str(msg.payload)[2:-1]
         print(str(msg.payload)[2:-1])
-        print(str(msg.payload[2:-1])
+        print(str(msg.payload[2:-1]))
     if msg.topic == humidity_topic:
         dataTuple[1] = str(msg.payload)[2:-1]
         #return
