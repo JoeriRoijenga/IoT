@@ -40,8 +40,8 @@ def maxRowsTable():
 # define and initialize global variables
 global numSamples
 numSamples = maxRowsTable()
-    if (numSamples > 101):
-numSamples = 100
+if (numSamples > 101):
+	numSamples = 100
 
 
 # main route
