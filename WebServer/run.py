@@ -6,34 +6,56 @@ from flask import Flask, render_template, send_file, make_response, request
 app = Flask(__name__)
 
 import sqlite3
-conn=sqlite3.connect('../espData.db')
-curs=conn.cursor()
+
+global conn
+global curs
+
+
+def connectDB():
+	conn = sqlite3.connect('../espData.db')
+	curs = conn.cursor()
+
+
+def disconnectDB():
+	conn.close()
 
 # Retrieve LAST data from database
 def getLastData():
+	connectDB()
 	for row in curs.execute("SELECT * FROM ESP_data ORDER BY timestamp DESC LIMIT 1"):
 		time = str(row[0])
 		temp = row[1]
 		hum = row[2]
-	#conn.close()
+	
+	disconnectDB()
+	
 	return time, temp, hum
 
 
 def getHistData (numSamples):
+	connectDB()
 	curs.execute("SELECT * FROM ESP_data ORDER BY timestamp DESC LIMIT "+str(numSamples))
 	data = curs.fetchall()
 	dates = []
 	temps = []
 	hums = []
+
 	for row in reversed(data):
 		dates.append(row[0])
 		temps.append(row[1])
 		hums.append(row[2])
+	
+	disconnectDB()
+
 	return dates, temps, hums
 
 def maxRowsTable():
+	connectDB()
 	for row in curs.execute("select COUNT(temperature) from  ESP_data"):
 		maxNumberRows=row[0]
+
+ 	disconnectDB()
+
 	return maxNumberRows
 
 #initialize global variables
