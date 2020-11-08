@@ -54,7 +54,7 @@ def maxRowsTable():
 	for row in curs.execute("select COUNT(temperature) from  ESP_data"):
 		maxNumberRows=row[0]
 
- 	disconnectDB()
+	disconnectDB()
 
 	return maxNumberRows
 
