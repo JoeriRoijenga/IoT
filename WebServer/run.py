@@ -7,11 +7,11 @@ app = Flask(__name__)
 
 import sqlite3
 
-global conn
-global curs
-
 
 def connectDB():
+	global conn
+	global curs
+
 	conn = sqlite3.connect('../espData.db')
 	curs = conn.cursor()
 
