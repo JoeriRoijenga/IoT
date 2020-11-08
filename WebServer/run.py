@@ -61,6 +61,7 @@ def maxRowsTable():
 	return maxNumberRows
 
 #initialize global variables
+setupConnection()
 global numSamples
 numSamples = maxRowsTable()
 if (numSamples > 101):
@@ -71,7 +72,7 @@ if (numSamples > 101):
 @app.route("/")
 def index():
 	setupConnection()
-	
+
 	time, temp, hum = getLastData()
 	templateData = {
 	  'time'		: time,
