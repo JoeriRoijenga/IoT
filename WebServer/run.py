@@ -14,6 +14,9 @@ def setupConnection():
 
 
 def connectDB():
+	if !'myVar' in globals():
+		setupConnection()
+
 	conn = sqlite3.connect('../espData.db')
 	curs = conn.cursor()
 
@@ -61,7 +64,6 @@ def maxRowsTable():
 	return maxNumberRows
 
 #initialize global variables
-setupConnection()
 global numSamples
 numSamples = maxRowsTable()
 if (numSamples > 101):
@@ -71,8 +73,6 @@ if (numSamples > 101):
 # main route 
 @app.route("/")
 def index():
-	setupConnection()
-
 	time, temp, hum = getLastData()
 	templateData = {
 	  'time'		: time,
@@ -86,8 +86,6 @@ def index():
 
 @app.route('/', methods=['POST'])
 def my_form_post():
-    setupConnection()
-
     global numSamples 
     numSamples = int (request.form['numSamples'])
     numMaxSamples = maxRowsTable()
@@ -109,8 +107,6 @@ def my_form_post():
 	
 @app.route('/plot/temp')
 def plot_temp():
-	setupConnection()
-
 	times, temps, hums = getHistData(numSamples)
 	ys = temps
 	fig = Figure()
@@ -133,8 +129,6 @@ def plot_temp():
 
 @app.route('/plot/hum')
 def plot_hum():
-	setupConnection()
-
 	times, temps, hums = getHistData(numSamples)
 	ys = hums
 	fig = Figure()
