@@ -24,12 +24,10 @@ def on_connect(client, userdata, flags, rc):
 def on_message(client, userdata, msg):
     theTime = strftime("%Y-%m-%d %H:%M:%S")
 
-    result = (theTime + "\t" + str(msg.payload))
+    result = (theTime + "\t" + str(msg.payload)[2:-1])
     print(msg.topic + ":\t" + result)
     if msg.topic == temperature_topic:
-        tempstr = str(msg.payload)[2:-1]
-        print(tempstr)
-        dataTuple[0] = tempstr
+        dataTuple[0] = str(msg.payload)[2:-1]
     if msg.topic == humidity_topic:
         dataTuple[1] = str(msg.payload)[2:-1]
         #return
