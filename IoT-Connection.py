@@ -14,7 +14,8 @@ CONNECTION_STRING = "HostName=IOT11-hub-Roijenga.azure-devices.net;DeviceId=pi-o
 # Define the JSON message to send to IoT Hub.
 TEMPERATURE = 20.0
 HUMIDITY = 60
-MSG_TXT = '{{"deviceId": {deviceId}, temperature": {temperature},"humidity": {humidity}}}'
+# MSG_TXT = '{{"deviceId": {deviceId}, temperature": {temperature},"humidity": {humidity}}}'
+MSG_TXT = "{\"deviceId\": \"Raspberry Pi - Python\",\"temperature\": %f,\"humidity\": %f}"
 
 def iothub_client_init():
     # Create an IoT Hub client
@@ -30,7 +31,10 @@ def iothub_client_telemetry_sample_run():
             # Build the message with simulated telemetry values.
             temperature = TEMPERATURE + (random.random() * 15)
             humidity = HUMIDITY + (random.random() * 20)
-            msg_txt_formatted = MSG_TXT.format(deviceId="Test", temperature=temperature, humidity=humidity) 
+            # msg_txt_formatted = MSG_TXT.format(deviceId="Test", temperature=temperature, humidity=humidity) 
+            msg_txt_formatted = MSG_TXT % (
+                    temperature,
+                    humidity)
             message = Message(msg_txt_formatted)
             # Add a custom application property to the message.
             # An IoT hub can filter on these properties without access to the message body.
