@@ -8,34 +8,44 @@ app = Flask(__name__)
 import sqlite3
 
 
+# def connectDB():
+# 	conn = sqlite3.connect('../espData.db', check_same_thread=False)
+# 	return conn
+
+
+# def disconnectDB(conn):
+# 	conn.close()
+# 	conn = None
+
+
 def connectDB():
-	# conn = sqlite3.connect('../espData.db', check_same_thread=False)
+	global conn
 	conn = sqlite3.connect('../espData.db')
-	return conn
+	return conn.cursor
 
 
-def disconnectDB(conn):
+def disconnectDB():
+	global conn
 	conn.close()
 	conn = None
 
+
 # Retrieve LAST data from database
 def getLastData():
-	conn = connectDB()
-	curs = conn.cursor()
+	curs = connectDB()
 
 	for row in curs.execute("SELECT * FROM ESP_data ORDER BY timestamp DESC LIMIT 1"):
 		time = str(row[0])
 		temp = row[1]
 		hum = row[2]
 	
-	disconnectDB(conn)
+	disconnectDB()
 	
 	return time, temp, hum
 
 
 def getHistData (numSamples):
-	conn = connectDB()
-	curs = conn.cursor()
+	curs = connectDB()
 
 	curs.execute("SELECT * FROM ESP_data ORDER BY timestamp DESC LIMIT "+str(numSamples))
 	data = curs.fetchall()
@@ -48,20 +58,20 @@ def getHistData (numSamples):
 		temps.append(row[1])
 		hums.append(row[2])
 	
-	disconnectDB(conn)
+	disconnectDB()
 
 	return dates, temps, hums
 
 def maxRowsTable():
-	conn = connectDB()
-	curs = conn.cursor()
+	curs = connectDB()
 
 	for row in curs.execute("select COUNT(temp) from  ESP_data"):
 		maxNumberRows=row[0]
 
-	disconnectDB(conn)
+	disconnectDB()
 
 	return maxNumberRows
+
 
 #initialize global variables
 global numSamples
