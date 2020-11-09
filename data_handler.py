@@ -75,7 +75,8 @@ def writeToDb(theTime, temperature, humidity, pressure):
     print( "Sending message: {}".format(message) )
     client.send_message(message)
     print ( "Message successfully sent" )
-            
+    time.sleep(3)
+    
     # End Azure
     global dataTuple
     dataTuple = [-1, -1, -1]
