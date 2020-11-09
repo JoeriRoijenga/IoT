@@ -7,19 +7,20 @@ app = Flask(__name__)
 
 import sqlite3
 
-conn = sqlite3.connect('../espData.db')
-curs = conn.cursor() 
+# conn = sqlite3.connect('../espData.db')
+# curs = conn.cursor() 
 
 # def setupConnection():
 # 	global conn
 # 	global curs
 
 
-# def connectDB():
-# 	if 'conn' not in globals() and 'curs' not in globals():
-# 		setupConnection()
-# 		print("created conn and curs")
-
+def connectDB():
+	# if 'conn' not in globals() and 'curs' not in globals():
+	# 	setupConnection()
+		# print("created conn and curs")
+	conn = sqlite3.connect('../espData.db')
+	curs = conn.cursor() 
 
 # 	if 'conn' in globals() and 'curs' in globals():
 # 		conn = sqlite3.connect('../espData.db')
@@ -27,24 +28,26 @@ curs = conn.cursor()
 # 		print("conn and curs exist")
 
 
-# def disconnectDB():
-# 	conn.close()
+def disconnectDB():
+	conn.close()
+	conn = None
+	curs = None
 
 # Retrieve LAST data from database
 def getLastData():
-	# connectDB()
+	connectDB()
 	for row in curs.execute("SELECT * FROM ESP_data ORDER BY timestamp DESC LIMIT 1"):
 		time = str(row[0])
 		temp = row[1]
 		hum = row[2]
 	
-	# disconnectDB()
+	disconnectDB()
 	
 	return time, temp, hum
 
 
 def getHistData (numSamples):
-	# connectDB()
+	connectDB()
 	curs.execute("SELECT * FROM ESP_data ORDER BY timestamp DESC LIMIT "+str(numSamples))
 	data = curs.fetchall()
 	dates = []
@@ -56,16 +59,16 @@ def getHistData (numSamples):
 		temps.append(row[1])
 		hums.append(row[2])
 	
-	# disconnectDB()
+	disconnectDB()
 
 	return dates, temps, hums
 
 def maxRowsTable():
-	# connectDB()
+	connectDB()
 	for row in curs.execute("select COUNT(temperature) from  ESP_data"):
 		maxNumberRows=row[0]
 
-	# disconnectDB()
+	disconnectDB()
 
 	return maxNumberRows
 
