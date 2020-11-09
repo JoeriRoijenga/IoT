@@ -26,9 +26,7 @@ def connectDB():
 
 
 def disconnectDB():
-	global conn
 	conn.close()
-	conn = None
 
 
 # Retrieve LAST data from database
