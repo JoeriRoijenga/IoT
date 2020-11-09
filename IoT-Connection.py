@@ -14,8 +14,6 @@ CONNECTION_STRING = "HostName=IOT11-hub-Roijenga.azure-devices.net;DeviceId=pi-o
 # Define the JSON message to send to IoT Hub.
 TEMPERATURE = 20.0
 HUMIDITY = 60
-# MSG_TXT = '{{"deviceId": {deviceId}, temperature": {temperature},"humidity": {humidity}}}'
-# MSG_TXT = "{\"deviceId\": \"Raspberry Pi - Python\",\"temperature\": %f,\"humidity\": %f}"
 MSG_TXT = "{\"deviceId\": \"test1\",\"temperature\": %f,\"humidity\": %f}"
 
 def iothub_client_init():
@@ -57,14 +55,3 @@ if __name__ == '__main__':
     print ( "IoT Hub Quickstart #1 - Simulated device" )
     print ( "Press Ctrl-C to exit" )
     iothub_client_telemetry_sample_run()
-
-#     WITH ai AS (
-# SELECT EventEnqueuedUtcTime, temperature, humidity, machinelearning(temperature,
-# humidity)
-# AS prediction, deviceId, timestamp FROM [iot-hub-input]
-# )
-# SELECT System.Timestamp timestamp, deviceId AS device_id, temperature AS
-# temperature, humidity AS humidity, CAST (prediction.[Scored Probabilities] AS FLOAT)
-# AS 'rainpercentage'
-# INTO [iot-database-output]
-# FROM ai

@@ -2,12 +2,31 @@ from time import strftime
 import paho.mqtt.client as mqtt
 import sqlite3
 
+# Start Azure
+import random
+import time
+
+from azure.iot.device import IoTHubDeviceClient, Message
+
+CONNECTION_STRING = "HostName=IOT11-hub-Roijenga.azure-devices.net;DeviceId=pi-oit-roijenga;SharedAccessKey=LN85DpNmgw3IrpuCVxN4ZKqmJBUnzV34GlYVuErI5nI="
+MSG_TXT = "{\"deviceId\": \"test1\",\"temperature\": %f,\"humidity\": %f}"
+
+# End Azure
+
 temperature_topic = "temperature"
 humidity_topic = "humidity"
 pressure_topic = "pressure"
 dbFile = "espData.db"
 
 dataTuple = [-1,-1,-1]
+
+
+# Start Azure
+def iothub_client_init():
+    # Create an IoT Hub client
+    client = IoTHubDeviceClient.create_from_connection_string(CONNECTION_STRING)
+    return client
+# End Azure
 
 # The callback for when the client receives a CONNACK response from the server.
 def on_connect(client, userdata, flags, rc):
@@ -44,6 +63,18 @@ def writeToDb(theTime, temperature, humidity, pressure):
     c.execute("INSERT INTO ESP_data VALUES (?,?,?,?)", (theTime, temperature, humidity, pressure))
     conn.commit()
 
+    # Start Azure
+    client = iothub_client_init()
+    msg_txt_formatted = MSG_TXT % (
+        temperature,
+        humidity)
+    message = Message(msg_txt_formatted)
+
+    print( "Sending message: {}".format(message) )
+    client.send_message(message)
+    print ( "Message successfully sent" )
+            
+    # End Azure
     global dataTuple
     dataTuple = [-1, -1, -1]
 
