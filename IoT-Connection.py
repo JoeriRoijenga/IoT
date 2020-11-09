@@ -14,7 +14,7 @@ CONNECTION_STRING = "HostName=IOT11-hub-Roijenga.azure-devices.net;DeviceId=pi-o
 # Define the JSON message to send to IoT Hub.
 TEMPERATURE = 20.0
 HUMIDITY = 60
-MSG_TXT = '{{"temperature": {temperature},"humidity": {humidity}}}'
+MSG_TXT = '{{"deviceId": {deviceId}, temperature": {temperature},"humidity": {humidity}}}'
 
 def iothub_client_init():
     # Create an IoT Hub client
