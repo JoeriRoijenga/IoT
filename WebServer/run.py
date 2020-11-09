@@ -32,7 +32,7 @@ def connectDB():
 def disconnectDB():
 	global conn
 	conn.close()
-	# conn = None
+	conn = None
 
 # Retrieve LAST data from database
 def getLastData():
