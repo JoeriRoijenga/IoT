@@ -30,8 +30,7 @@ def iothub_client_telemetry_sample_run():
             # Build the message with simulated telemetry values.
             temperature = TEMPERATURE + (random.random() * 15)
             humidity = HUMIDITY + (random.random() * 20)
-            # msg_txt_formatted = MSG_TXT.format(deviceId="Raspberry Pi - Python", temperature=temperature, humidity=humidity)
-            msg_txt_formatted = MSG_TXT.format("{\"deviceId=\"Raspberry Pi - Python\", \"temperature\"=\"temperature\", \"humidity\"=\"humidity\"}")
+            msg_txt_formatted = MSG_TXT.format(deviceId="Raspberry Pi - Python", temperature=temperature, humidity=humidity) 
             message = Message(msg_txt_formatted)
             # Add a custom application property to the message.
             # An IoT hub can filter on these properties without access to the message body.
