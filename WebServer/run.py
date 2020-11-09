@@ -7,6 +7,7 @@ app = Flask(__name__)
 
 import sqlite3
 
+conn = None
 
 # def connectDB():
 # 	conn = sqlite3.connect('../espData.db', check_same_thread=False)
@@ -25,6 +26,7 @@ def connectDB():
 
 
 def disconnectDB():
+	global conn
 	conn.close()
 	conn = None
 
