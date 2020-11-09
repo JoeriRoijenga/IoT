@@ -20,10 +20,8 @@ def connectDB():
 	# 	setupConnection()
 		# print("created conn and curs")
 	global conn
-	global curs
-	
 	conn = sqlite3.connect('../espData.db')
-	curs = conn.cursor() 
+	return conn.cursor()
 
 # 	if 'conn' in globals() and 'curs' in globals():
 # 		conn = sqlite3.connect('../espData.db')
@@ -32,13 +30,13 @@ def connectDB():
 
 
 def disconnectDB():
+	global conn
 	conn.close()
-	conn = None
-	curs = None
+	# conn = None
 
 # Retrieve LAST data from database
 def getLastData():
-	connectDB()
+	curs = connectDB()
 	for row in curs.execute("SELECT * FROM ESP_data ORDER BY timestamp DESC LIMIT 1"):
 		time = str(row[0])
 		temp = row[1]
@@ -50,7 +48,7 @@ def getLastData():
 
 
 def getHistData (numSamples):
-	connectDB()
+	curs = connectDB()
 	curs.execute("SELECT * FROM ESP_data ORDER BY timestamp DESC LIMIT "+str(numSamples))
 	data = curs.fetchall()
 	dates = []
@@ -67,7 +65,7 @@ def getHistData (numSamples):
 	return dates, temps, hums
 
 def maxRowsTable():
-	connectDB()
+	curs = connectDB()
 	for row in curs.execute("select COUNT(temperature) from  ESP_data"):
 		maxNumberRows=row[0]
 
