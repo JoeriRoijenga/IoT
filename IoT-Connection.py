@@ -15,7 +15,8 @@ CONNECTION_STRING = "HostName=IOT11-hub-Roijenga.azure-devices.net;DeviceId=pi-o
 TEMPERATURE = 20.0
 HUMIDITY = 60
 # MSG_TXT = '{{"deviceId": {deviceId}, temperature": {temperature},"humidity": {humidity}}}'
-MSG_TXT = "{\"deviceId\": \"test\",\"temperature\": %f,\"humidity\": %f}"
+# MSG_TXT = "{\"deviceId\": \"Raspberry Pi - Python\",\"temperature\": %f,\"humidity\": %f}"
+MSG_TXT = "{\"deviceId\": \"test1\",\"temperature\": %f,\"humidity\": %f}"
 
 def iothub_client_init():
     # Create an IoT Hub client
