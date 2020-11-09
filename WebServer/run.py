@@ -36,7 +36,7 @@ def disconnectDB(conn):
 def getLastData():
 	conn = connectDB()
 	curs = conn.cursor()
-	
+
 	for row in curs.execute("SELECT * FROM ESP_data ORDER BY timestamp DESC LIMIT 1"):
 		time = str(row[0])
 		temp = row[1]
@@ -70,7 +70,7 @@ def maxRowsTable():
 	conn = connectDB()
 	curs = conn.cursor()
 
-	for row in curs.execute("select COUNT(temperature) from  ESP_data"):
+	for row in curs.execute("select COUNT(temp) from  ESP_data"):
 		maxNumberRows=row[0]
 
 	disconnectDB(conn)
