@@ -3,6 +3,7 @@ import paho.mqtt.client as mqtt
 import sqlite3
 
 # Start Azure
+from decimal import Decimal
 import random
 import time
 
@@ -66,8 +67,9 @@ def writeToDb(theTime, temperature, humidity, pressure):
     # Start Azure
     client = iothub_client_init()
     msg_txt_formatted = MSG_TXT % (
-        temperature,
-        humidity)
+        Decimal(temperature),
+        Decimal(humidity)
+    )
     message = Message(msg_txt_formatted)
 
     print( "Sending message: {}".format(message) )
