@@ -65,7 +65,6 @@ def writeToDb(theTime, temperature, humidity, pressure):
     conn.commit()
 
     # Start Azure
-    client = iothub_client_init()
     msg_txt_formatted = MSG_TXT % (
         Decimal(temperature),
         Decimal(humidity)
@@ -73,11 +72,10 @@ def writeToDb(theTime, temperature, humidity, pressure):
     message = Message(msg_txt_formatted)
 
     print( "Sending message: {}".format(message) )
-    client.send_message(message)
+    client_iot.send_message(message)
     print ( "Message successfully sent" )
-    time.sleep(3)
-    
     # End Azure
+    
     global dataTuple
     dataTuple = [-1, -1, -1]
 
@@ -87,6 +85,8 @@ client.on_message = on_message
 
 client.username_pw_set("admin", "admin")
 client.connect("192.168.2.24", 1883, 60)
+
+client_iot = iothub_client_init()
 
 # Blocking call that processes network traffic, dispatches callbacks and
 # handles reconnecting.
