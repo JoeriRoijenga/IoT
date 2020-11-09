@@ -7,25 +7,11 @@ app = Flask(__name__)
 
 import sqlite3
 
-# conn = sqlite3.connect('../espData.db')
-# curs = conn.cursor() 
-
-# def setupConnection():
-# 	global conn
-# 	global curs
-
 
 def connectDB():
-	# if 'conn' not in globals() and 'curs' not in globals():
-	# 	setupConnection()
-		# print("created conn and curs")
-	conn = sqlite3.connect('../espData.db', check_same_thread=False)
+	# conn = sqlite3.connect('../espData.db', check_same_thread=False)
+	conn = sqlite3.connect('../espData.db')
 	return conn
-
-# 	if 'conn' in globals() and 'curs' in globals():
-# 		conn = sqlite3.connect('../espData.db')
-# 		curs = conn.cursor()
-# 		print("conn and curs exist")
 
 
 def disconnectDB(conn):
