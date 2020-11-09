@@ -20,7 +20,7 @@ def connectDB():
 	# 	setupConnection()
 		# print("created conn and curs")
 	global conn
-	conn = sqlite3.connect('../espData.db')
+	conn = sqlite3.connect('../espData.db', check_same_thread=False)
 	return conn.cursor()
 
 # 	if 'conn' in globals() and 'curs' in globals():
