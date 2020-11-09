@@ -21,7 +21,7 @@ import sqlite3
 def connectDB():
 	global conn
 	conn = sqlite3.connect('../espData.db')
-	return conn.cursor
+	return conn.cursor()
 
 
 def disconnectDB():
