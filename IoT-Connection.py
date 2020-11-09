@@ -9,7 +9,7 @@ from azure.iot.device import IoTHubDeviceClient, Message
 # The device connection string to authenticate the device with your IoT hub.
 # Using the Azure CLI:
 # az iot hub device-identity show-connection-string --hub-name {YourIoTHubName} --device-id MyNodeDevice --output table
-CONNECTION_STRING = "HostName=IOT11-hub-Roijenga.azure-devices.net;SharedAccessKeyName=iothubowner;SharedAccessKey=3htresrwh0BwwHjZ6Ee4xFiCAlCAelaY+hasSDiX3CI="
+CONNECTION_STRING = "HostName=IOT11-hub-Roijenga.azure-devices.net;DeviceId=pi-oit-roijenga;SharedAccessKey=LN85DpNmgw3IrpuCVxN4ZKqmJBUnzV34GlYVuErI5nI="
 
 # Define the JSON message to send to IoT Hub.
 TEMPERATURE = 20.0
@@ -32,7 +32,6 @@ def iothub_client_telemetry_sample_run():
             humidity = HUMIDITY + (random.random() * 20)
             msg_txt_formatted = MSG_TXT.format(deviceId="Raspberry Pi - Python", temperature=temperature, humidity=humidity)
             message = Message(msg_txt_formatted)
-
             # Add a custom application property to the message.
             # An IoT hub can filter on these properties without access to the message body.
             if temperature > 30:
