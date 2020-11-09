@@ -30,7 +30,7 @@ def iothub_client_telemetry_sample_run():
             # Build the message with simulated telemetry values.
             temperature = TEMPERATURE + (random.random() * 15)
             humidity = HUMIDITY + (random.random() * 20)
-            msg_txt_formatted = MSG_TXT.format(deviceId="Raspberry Pi - Python", temperature=temperature, humidity=humidity) 
+            msg_txt_formatted = MSG_TXT.format(deviceId="Test", temperature=temperature, humidity=humidity) 
             message = Message(msg_txt_formatted)
             # Add a custom application property to the message.
             # An IoT hub can filter on these properties without access to the message body.
@@ -52,3 +52,14 @@ if __name__ == '__main__':
     print ( "IoT Hub Quickstart #1 - Simulated device" )
     print ( "Press Ctrl-C to exit" )
     iothub_client_telemetry_sample_run()
+
+#     WITH ai AS (
+# SELECT EventEnqueuedUtcTime, temperature, humidity, machinelearning(temperature,
+# humidity)
+# AS prediction, deviceId, timestamp FROM [iot-hub-input]
+# )
+# SELECT System.Timestamp timestamp, deviceId AS device_id, temperature AS
+# temperature, humidity AS humidity, CAST (prediction.[Scored Probabilities] AS FLOAT)
+# AS 'rainpercentage'
+# INTO [iot-database-output]
+# FROM ai
