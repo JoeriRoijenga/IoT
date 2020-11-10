@@ -1,39 +1,14 @@
-import mysql.connector
-from mysql.connector import errorcode
+import pyodbc
+server = 'iot-db-roijenga.database.windows.net'
+database = 'iot-db-weather-roijenga'
+username = 'iot-joeri-roijenga'
+password = 'cO1WfBYif7eA'   
+driver= '{ODBC Driver 17 for SQL Server}'
 
-# Obtain connection string information from the portal
-config = {
-  'host':'iot-db-roijenga.database.windows.net',
-  'user':'iot-joeri-roijenga@iot-db-weather-roijenga',
-  'password':'cO1WfBYif7eA',
-  'database':'iot-db-weather-roijenga'
-}
-
-# Construct connection string
-try:
-   conn = mysql.connector.connect(**config)
-   print("Connection established")
-except mysql.connector.Error as err:
-  if err.errno == errorcode.ER_ACCESS_DENIED_ERROR:
-    print("Something is wrong with the user name or password")
-  elif err.errno == errorcode.ER_BAD_DB_ERROR:
-    print("Database does not exist")
-  else:
-    print(err)
-else:
-  cursor = conn.cursor()
-
-  # Read data
-  cursor.execute("SELECT * FROM inventory;")
-  rows = cursor.fetchall()
-  print("Read",cursor.rowcount,"row(s) of data.")
-
-  # Print all rows
-  for row in rows:
-    print("Data row = (%s, %s, %s)" %(str(row[0]), str(row[1]), str(row[2])))
-
-  # Cleanup
-  conn.commit()
-  cursor.close()
-  conn.close()
-  print("Done.")
+with pyodbc.connect('DRIVER='+driver+';SERVER='+server+';PORT=1433;DATABASE='+database+';UID='+username+';PWD='+ password) as conn:
+    with conn.cursor() as cursor:
+        cursor.execute("SELECT TOP (1000) * FROM [dbo].[dataweather]")
+        row = cursor.fetchone()
+        while row:
+            print (str(row[0]) + " " + str(row[1]))
+            row = cursor.fetchone()
