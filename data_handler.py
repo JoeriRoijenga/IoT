@@ -4,12 +4,13 @@ import sqlite3
 
 # Start Azure
 from decimal import Decimal
+import random
 import time
 
 from azure.iot.device import IoTHubDeviceClient, Message
 
 CONNECTION_STRING = "HostName=IOT11-hub-Roijenga.azure-devices.net;DeviceId=pi-oit-roijenga;SharedAccessKey=LN85DpNmgw3IrpuCVxN4ZKqmJBUnzV34GlYVuErI5nI="
-MSG_TXT = "{\"deviceId\": \"Raspberry Pi (Joeri)\",\"temperature\": %f,\"humidity\": %f, \"pressure\": %f}"
+MSG_TXT = "{\"deviceId\": \"Raspberry Pi (Joeri)\",\"temperature\": %f,\"humidity\": %f, \"pressure\": %f,}"
 
 # End Azure
 
@@ -66,7 +67,6 @@ def writeToDb(theTime, temperature, humidity, pressure):
 
     # Start Azure
     msg_txt_formatted = MSG_TXT % (
-        theTime,
         Decimal(temperature),
         Decimal(humidity),
         Decimal(pressure)
