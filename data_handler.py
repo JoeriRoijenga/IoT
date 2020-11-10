@@ -10,7 +10,7 @@ import time
 from azure.iot.device import IoTHubDeviceClient, Message
 
 CONNECTION_STRING = "HostName=IOT11-hub-Roijenga.azure-devices.net;DeviceId=pi-oit-roijenga;SharedAccessKey=LN85DpNmgw3IrpuCVxN4ZKqmJBUnzV34GlYVuErI5nI="
-MSG_TXT = "{\"deviceId\": \"Raspberry Pi (Joeri)\",\"temperature\": %f,\"humidity\": %f, \"pressure\": %f,}"
+MSG_TXT = "{\"deviceId\": \"Raspberry Pi (Joeri)\",\"temperature\": %f,\"humidity\": %f, \"pressure\": %f, \"time\": %f,}"
 
 # End Azure
 
@@ -69,7 +69,8 @@ def writeToDb(theTime, temperature, humidity, pressure):
     msg_txt_formatted = MSG_TXT % (
         Decimal(temperature),
         Decimal(humidity),
-        Decimal(pressure)
+        Decimal(pressure),
+        theTime
     )
     message = Message(msg_txt_formatted)
 
