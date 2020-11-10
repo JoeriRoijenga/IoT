@@ -10,7 +10,7 @@ import time
 from azure.iot.device import IoTHubDeviceClient, Message
 
 CONNECTION_STRING = "HostName=IOT11-hub-Roijenga.azure-devices.net;DeviceId=pi-oit-roijenga;SharedAccessKey=LN85DpNmgw3IrpuCVxN4ZKqmJBUnzV34GlYVuErI5nI="
-MSG_TXT = "{\"deviceId\": \"test1\",\"temperature\": %f,\"humidity\": %f}"
+MSG_TXT = "{\"deviceId\": \"Raspberry Pi (Joeri)\",\"pressure\": %f,\"temperature\": %f,\"humidity\": %f}"
 
 # End Azure
 
@@ -59,15 +59,16 @@ def on_message(client, userdata, msg):
 
 def writeToDb(theTime, temperature, humidity, pressure):
     conn = sqlite3.connect(dbFile)
-    c = conn.cursor()
+    cursor = conn.cursor()
     print("Writing to db...")
-    c.execute("INSERT INTO ESP_data VALUES (?,?,?,?)", (theTime, temperature, humidity, pressure))
+    cursor.execute("INSERT INTO ESP_data VALUES (?,?,?,?)", (theTime, temperature, humidity, pressure))
     conn.commit()
 
     # Start Azure
     msg_txt_formatted = MSG_TXT % (
         Decimal(temperature),
-        Decimal(humidity)
+        Decimal(humidity),
+        Decimal(pressure)
     )
     message = Message(msg_txt_formatted)
 
@@ -75,7 +76,7 @@ def writeToDb(theTime, temperature, humidity, pressure):
     client_iot.send_message(message)
     print ( "Message successfully sent" )
     # End Azure
-    
+
     global dataTuple
     dataTuple = [-1, -1, -1]
 
