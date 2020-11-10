@@ -4,7 +4,6 @@ import sqlite3
 
 # Start Azure
 from decimal import Decimal
-import random
 import time
 
 from azure.iot.device import IoTHubDeviceClient, Message
@@ -67,7 +66,7 @@ def writeToDb(theTime, temperature, humidity, pressure):
 
     # Start Azure
     msg_txt_formatted = MSG_TXT % (
-        str(theTime),
+        theTime,
         Decimal(temperature),
         Decimal(humidity),
         Decimal(pressure)
