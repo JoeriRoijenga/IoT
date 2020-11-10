@@ -67,9 +67,9 @@ def writeToDb(theTime, temperature, humidity, pressure):
     # Start Azure
     msg_txt_formatted = MSG_TXT % (
         theTime,
-        Float(temperature),
-        Float(humidity),
-        Float(pressure)
+        float(temperature),
+        float(humidity),
+        float(pressure)
     )
     message = Message(msg_txt_formatted)
 
