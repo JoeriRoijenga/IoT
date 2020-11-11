@@ -1,6 +1,8 @@
 from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
 from matplotlib.figure import Figure
 import io
+from time import strftime
+
 
 from flask import Flask, render_template, send_file, make_response, request
 app = Flask(__name__)
@@ -99,11 +101,9 @@ def my_form_post():
         numSamples = (numMaxSamples-1)
     
     time, temp, hum, press = getLastData()
-
-    time = strftime("%H:%M:%S")
     
     templateData = {
-	  'time'		: time,
+	  'time'		: strftime("%H:%M:%S"),
       'temp'		: temp,
       'hum'			: hum,
       'press'		: press,
