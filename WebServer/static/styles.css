@@ -4,7 +4,7 @@ body{
 
 .button {
 	background-color: #e7e7e7;
-	border-radius: 10px
+	border-radius: 10px;
 	border: solid white;
 	color: black;
 	padding: 15px 32px;
@@ -26,5 +26,5 @@ img{
 
 #g1, #g2 {
 	border-radius: 10px;
-    border: solid;
+    border: solid 5px;
 }
