@@ -1,3 +1,5 @@
 import WebServer.run
+import data_handler
 
-run.start()
+data_handler()
+# run()
