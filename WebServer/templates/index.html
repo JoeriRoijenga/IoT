@@ -29,8 +29,9 @@
 	  	<div class="last-reading footer-item"><b>Last Reading:</b> {{time}}</div>
 	  	<div class="sample-amount footer-item">
 	  		<form method="POST">
+	  			<label for="numSamples"><b>Samples:</b></label>
 		  		<select id="numSamplesSelect" name="numSamples" class="select-samples" onchange="this.form.submit()">>
-					<option value="50" selected>50</option>
+					<option value="50">50</option>
 					<option value="100">100</option>
 				</select>
 			</form>
