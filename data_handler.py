@@ -77,7 +77,7 @@ def writeToDb(theTime, temperature, humidity, pressure):
 
 
  # Start Azure
-def sendToAzure():
+def sendToAzure(theTime, temperature, humidity, pressure):
     msg_txt_formatted = MSG_TXT % (
         Decimal(temperature),
         Decimal(humidity),
