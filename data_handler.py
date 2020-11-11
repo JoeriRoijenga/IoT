@@ -82,17 +82,21 @@ def writeToDb(theTime, temperature, humidity, pressure):
     global dataTuple
     dataTuple = [-1, -1, -1]
 
-client = mqtt.Client()
-client.on_connect = on_connect
-client.on_message = on_message
 
-client.username_pw_set("admin", "admin")
-client.connect("192.168.2.24", 1883, 60)
 
-client_iot = iothub_client_init()
+def start():
+    client = mqtt.Client()
+    client.on_connect = on_connect
+    client.on_message = on_message
 
-# Blocking call that processes network traffic, dispatches callbacks and
-# handles reconnecting.
-# Other loop*() functions are available that give a threaded interface and a
-# manual interface.
-client.loop_forever()
+    client.username_pw_set("admin", "admin")
+    client.connect("192.168.2.24", 1883, 60)
+
+    client_iot = iothub_client_init()
+
+    # Blocking call that processes network traffic, dispatches callbacks and
+    # handles reconnecting.
+    # Other loop*() functions are available that give a threaded interface and a
+    # manual interface.
+    client.loop_forever()
+    
