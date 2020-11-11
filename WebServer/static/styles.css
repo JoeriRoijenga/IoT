@@ -15,6 +15,10 @@ body{
 	cursor: grab;
 }
 
+.button:hover {
+	background-color: #808080
+}
+
 img{
 	display: display: inline-block
 }
