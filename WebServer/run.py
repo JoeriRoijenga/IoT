@@ -43,15 +43,18 @@ def getHistData (numSamples):
 	dates = []
 	temps = []
 	hums = []
+	press = []
 
 	for row in reversed(data):
 		dates.append(row[0])
 		temps.append(row[1])
 		hums.append(row[2])
+		press.append(row[3])
+
 	
 	disconnectDB(conn)
 
-	return dates, temps, hums
+	return dates, temps, hums, press
 
 def maxRowsTable():
 	conn = connectDB()
@@ -110,7 +113,7 @@ def my_form_post():
 	
 @app.route('/plot/temp')
 def plot_temp():
-	times, temps, hums = getHistData(numSamples)
+	times, temps, hums, press = getHistData(numSamples)
 	ys = temps
 	fig = Figure()
 	
@@ -132,7 +135,7 @@ def plot_temp():
 
 @app.route('/plot/hum')
 def plot_hum():
-	times, temps, hums = getHistData(numSamples)
+	times, temps, hums, press = getHistData(numSamples)
 	ys = hums
 	fig = Figure()
 	
@@ -152,10 +155,31 @@ def plot_hum():
 	
 	return response
 
-if __name__ == "__main__":
-   app.run(host='0.0.0.0', port=80, debug=False)
+@app.route('/plot/press')
+def plot_press():
+	times, temps, hums, press = getHistData(numSamples)
+	ys = press
+	fig = Figure()
+	
+	axis = fig.add_subplot(1, 1, 1)
+	axis.set_title("Pressure [hPa]")
+	axis.set_xlabel("Samples")
+	axis.grid(True)
+	xs = range(numSamples)
+	axis.plot(xs, ys)
+	
+	canvas = FigureCanvas(fig)
+	output = io.BytesIO()
+	canvas.print_png(output)
+	
+	response = make_response(output.getvalue())
+	response.mimetype = 'image/png'
+	
+	return response
 
+
+if __name__ == "__main__":
+	start()
 
 def start():
-	print("starting automation")
 	app.run(host='0.0.0.0', port=80, debug=False)
