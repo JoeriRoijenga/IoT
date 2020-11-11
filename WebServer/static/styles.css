@@ -1,5 +1,6 @@
 body{
 	padding:1%
+	text-align: center;
 }
 
 .button {
@@ -26,5 +27,9 @@ img{
 
 #g1, #g2 {
 	border-radius: 10px;
-    border: solid 5px;
+    border: solid 1px;
+    width: 200px;
+	height: 160px;
+	display: inline-block;
+	margin: 1em;
 }
