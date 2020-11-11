@@ -57,7 +57,7 @@ body{
 	margin-left: 5px;
 	margin-top: 15px;
 	margin-right: 5px;
-	float: left;
+	/*float: left;*/
 }
 
 .last-reading {
