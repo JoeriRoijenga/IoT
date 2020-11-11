@@ -1,6 +1,7 @@
 body{
 	padding: 1%;
 	text-align: center;
+	background-color: #f2f2f2;
 }
 
 .button {
@@ -47,7 +48,7 @@ body{
   left: 0;
   bottom: 0;
   width: 100%;
-  background-color: lightgray;
+  background-color: #d3d3d3;
   color: black;
   text-align: center;
   height: 50px;
