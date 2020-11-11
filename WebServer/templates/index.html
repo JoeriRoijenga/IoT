@@ -29,7 +29,7 @@
 	  	<div class="last-reading footer-item"><b>Last Reading:</b> {{time}}</div>
 	  	<div class="sample-amount footer-item">
 	  		<form method="POST">
-		  		<select name="numSamples" class="select-samples" onchange="this.form.submit()">>
+		  		<select id="numSamples" name="numSamples" class="select-samples" onchange="this.form.submit()">>
 					<option value="0">Samples:</option>
 					<option value="50">50</option>
 					<option value="100">100</option>
@@ -81,7 +81,7 @@
 
 	});
 
-	document.getElementsByTagName("numSamples").value = {{numSamples}};
+	document.getElementById("numSamples").value = {{numSamples}};
 
 	// setTimeout(function(){
 	// 	window.location.reload(1);
