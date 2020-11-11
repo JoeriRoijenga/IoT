@@ -47,12 +47,13 @@ body{
   left: 0;
   bottom: 0;
   width: 100%;
-  background-color: grey;
-  color: white;
+  background-color: lightgray;
+  color: black;
   text-align: center;
   height: 50px;
 }
 
 .last-reading {
 	text-align: left;
+	top: 50%;
 }
