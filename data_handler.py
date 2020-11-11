@@ -20,7 +20,6 @@ pressure_topic = "pressure"
 dbFile = "espData.db"
 
 dataTuple = [-1,-1,-1]
-client_iot = iothub_client_init()
 
 
 # Start Azure
@@ -28,6 +27,9 @@ def iothub_client_init():
     # Create an IoT Hub client
     client = IoTHubDeviceClient.create_from_connection_string(CONNECTION_STRING)
     return client
+
+
+client_iot = iothub_client_init()
 # End Azure
 
 # The callback for when the client receives a CONNACK response from the server.
