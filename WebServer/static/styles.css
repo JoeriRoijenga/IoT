@@ -37,6 +37,6 @@ body{
 .graph {
 	border: solid 1px;
 	border-radius: 10px;
-	display: inline-block
+	display: inline-block;
 	width: 50%;
 }
