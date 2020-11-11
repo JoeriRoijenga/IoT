@@ -55,19 +55,21 @@ body{
 
 .footer-item {
 	margin-left: 5px;
-	margin-top: 15px;
 	margin-right: 5px;
 	float: left;
 }
 
 .last-reading {
 	text-align: left;
+	margin-top: 15px;
 }
 
 .sample-amount {
 	float: right;
+	margin-top: 5px;
 }
 
 .select-samples {
-	width: 80px;
+	width: 85px;
+	height: 40px;
 }
