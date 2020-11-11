@@ -1,4 +1,4 @@
-import WebServer.run
+import WebServer.run as run
 # import data_handler
 from threading import Thread
 
