@@ -74,12 +74,12 @@ if (numSamples > 101):
 # main route 
 @app.route("/")
 def index():
-	time, temp, hum = getLastData()
+	time, temp, hum, press = getLastData()
 	templateData = {
 	  'time'		: time,
       'temp'		: temp,
       'hum'			: hum,
-      'press'			: press,
+      'press'		: press,
       'numSamples'	: numSamples
 	}
 
@@ -95,12 +95,13 @@ def my_form_post():
     if (numSamples > numMaxSamples):
         numSamples = (numMaxSamples-1)
     
-    time, temp, hum = getLastData()
+    time, temp, hum, press = getLastData()
     
     templateData = {
 	  'time'		: time,
       'temp'		: temp,
       'hum'			: hum,
+      'press'			: press,
       'numSamples'	: numSamples
 	}
 
