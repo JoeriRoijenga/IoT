@@ -5,26 +5,6 @@
     <title>DHT Data Sensor</title>
     <link rel="stylesheet" href='../static/styles.css'/>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <style>
-		/*body {
-			text-align: center;
-		}
-
-		#g1,
-		#g2 {
-			width: 200px;
-			height: 160px;
-			display: inline-block;
-			margin: 1em;
-		}*/
-
-    </style>
-
-    <script>
-  //   	setTimeout(function(){
-		// 	window.location.reload(1);
-		// }, 30000);
-    </script>
 </head>
 
 <body>
@@ -54,30 +34,31 @@
 
 <script src="../static/raphael-2.1.4.min.js"></script>
 <script src="../static/justgage.js"></script>
+<script src="../st">/javascript.js"></script>
 <script>
-		var g1, g2;
-		document.addEventListener("DOMContentLoaded", function(event) {
-			g1 = new JustGage({
-				id: "g1",
-				value: {{temp}},
-				valueFontColor: "black",
-				titleFontColor: "black",
-				min: -10,
-				max: 50,
-				title: "Temperature",
-				label: "Celcius"
-			});
-
-			g2 = new JustGage({
-				id: "g2",
-				value: {{hum}},
-				valueFontColor: "black",
-				titleFontColor: "black",
-				min: 0,
-				max: 100,
-				title: "Humidity",
-				label: "%"
-			});
-
+	var g1, g2;
+	document.addEventListener("DOMContentLoaded", function(event) {
+		g1 = new JustGage({
+			id: "g1",
+			value: {{temp}},
+			valueFontColor: "black",
+			titleFontColor: "black",
+			min: -10,
+			max: 50,
+			title: "Temperature",
+			label: "Celcius"
 		});
-    </script>
+
+		g2 = new JustGage({
+			id: "g2",
+			value: {{hum}},
+			valueFontColor: "black",
+			titleFontColor: "black",
+			min: 0,
+			max: 100,
+			title: "Humidity",
+			label: "%"
+		});
+
+	});
+</script>
