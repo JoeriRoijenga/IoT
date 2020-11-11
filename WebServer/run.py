@@ -99,9 +99,11 @@ def my_form_post():
         numSamples = (numMaxSamples-1)
     
     time, temp, hum, press = getLastData()
+
+    time = strftime("%H:%M:%S")
     
     templateData = {
-	  'time'		: strftime("%H:%M:%S"),
+	  'time'		: time,
       'temp'		: temp,
       'hum'			: hum,
       'press'		: press,
