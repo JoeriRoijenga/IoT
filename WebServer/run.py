@@ -9,7 +9,7 @@ import sqlite3
 
 
 def connectDB():
-	conn = sqlite3.connect('../espData.db')
+	conn = sqlite3.connect('espData.db')
 	return conn
 
 
