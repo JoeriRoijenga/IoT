@@ -58,8 +58,15 @@ def on_message(client, userdata, msg):
         dataTuple[2] = str(msg.payload)[2:-1]
     if dataTuple[0] != -1 and dataTuple[1] != -1 and dataTuple[2] != -1:
         writeToDb(theTime, dataTuple[0], dataTuple[1], dataTuple[2])
-        # sendToAzure()
+        sendToAzure(theTime, dataTuple[0], dataTuple[1], dataTuple[2])
+        resetTuple()
     return
+
+
+def resetTuple():
+    global dataTuple
+    dataTuple = [-1, -1, -1]
+
 
 def writeToDb(theTime, temperature, humidity, pressure):
     conn = sqlite3.connect(dbFile)
@@ -68,7 +75,9 @@ def writeToDb(theTime, temperature, humidity, pressure):
     cursor.execute("INSERT INTO ESP_data VALUES (?,?,?,?)", (theTime, temperature, humidity, pressure))
     conn.commit()
 
-    # Start Azure
+
+ # Start Azure
+def sendToAzure():
     msg_txt_formatted = MSG_TXT % (
         Decimal(temperature),
         Decimal(humidity),
@@ -80,11 +89,7 @@ def writeToDb(theTime, temperature, humidity, pressure):
     print( "Sending message: {}".format(message) )
     client_iot.send_message(message)
     print ( "Message successfully sent" )
-    # End Azure
-
-    global dataTuple
-    dataTuple = [-1, -1, -1]
-
+# End Azure
 
 
 def start():
