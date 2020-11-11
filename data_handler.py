@@ -20,6 +20,7 @@ pressure_topic = "pressure"
 dbFile = "espData.db"
 
 dataTuple = [-1,-1,-1]
+client_iot = iothub_client_init()
 
 
 # Start Azure
@@ -92,11 +93,8 @@ def start():
     client.username_pw_set("admin", "admin")
     client.connect("192.168.2.24", 1883, 60)
 
-    client_iot = iothub_client_init()
-
     # Blocking call that processes network traffic, dispatches callbacks and
     # handles reconnecting.
     # Other loop*() functions are available that give a threaded interface and a
     # manual interface.
     client.loop_forever()
-    
