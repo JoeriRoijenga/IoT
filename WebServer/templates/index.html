@@ -12,14 +12,8 @@
     <div id="g1" class="reading"></div>
     <div id="g2" class="reading"></div>
     <div id="g3" class="reading"></div>
+    
     <hr>
-	<h3> HISTORICAL DATA </h3>
-	<p> Enter number of samples to retrieve:
-	<form method="POST">
-		<input name="numSamples" value= {{numSamples}}>
-		<input type="submit">
-	</form></p>
-	<hr>
 
 	<div class="graph">
 		<img class="img-class" src="/plot/temp" alt="Image Placeholder" width="49%">
@@ -34,11 +28,13 @@
 	<div class="footer">
 	  	<div class="last-reading footer-item"><b>Last Reading:</b> {{time}}</div>
 	  	<div class="sample-amount footer-item">
-	  		<select name="numSamples" class="select-samples">
-				<option value="0">Samples:</option>
-				<option value="50">50</option>
-				<option value="100">100</option>
-			</select>
+	  		<form method="POST">
+		  		<select name="numSamples" class="select-samples" onchange="this.form.submit()">>
+					<option value="0">Samples:</option>
+					<option value="50">50</option>
+					<option value="100">100</option>
+				</select>
+			</form>
 	  	</div>
 	</div>
 </body>
