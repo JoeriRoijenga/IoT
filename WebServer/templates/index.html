@@ -22,7 +22,7 @@
 </head>
 
 <body>
-	<h1>DHT Sensor Data </h1>
+	<h1>ESP Sensor Data </h1>
     <div id="g1"></div>
     <div id="g2"></div>
     <hr>
@@ -36,13 +36,14 @@
 		</form></p>
 		<hr>
 		<img src="/plot/temp" alt="Image Placeholder" width="49%">
-		<img src="/plot/hum" alt="Image Placeholder" width="49%">
-	
-	<p> @2018 Developed by MJRoBot.org</p>
-    
-    <script src="../static/raphael-2.1.4.min.js"></script>
-    <script src="../static/justgage.js"></script>
-    <script>
+		<img src="/plot/hum" alt="Image Placeholder" width="49%">  
+</body>
+
+</html>
+
+<script src="../static/raphael-2.1.4.min.js"></script>
+<script src="../static/justgage.js"></script>
+<script>
 		var g1, g2;
 		document.addEventListener("DOMContentLoaded", function(event) {
 			g1 = new JustGage({
@@ -69,6 +70,3 @@
 
 		});
     </script>
-</body>
-
-</html>
