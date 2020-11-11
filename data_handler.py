@@ -47,7 +47,7 @@ def on_connect(client, userdata, flags, rc):
 def on_message(client, userdata, msg):
     theTime = strftime("%Y-%m-%d %H:%M:%S")
     result = (theTime + "\t" + str(msg.payload)[2:-1])
-    
+
     print(msg.topic + ":\t" + result)
     if msg.topic == temperature_topic:
         dataTuple[0] = str(msg.payload)[2:-1]
@@ -58,7 +58,7 @@ def on_message(client, userdata, msg):
         dataTuple[2] = str(msg.payload)[2:-1]
     if dataTuple[0] != -1 and dataTuple[1] != -1 and dataTuple[2] != -1:
         writeToDb(strftime("%Y-%m-%d %H:%M:%S"), dataTuple[0], dataTuple[1], dataTuple[2])
-        sendToAzure(strftime("%A %B %-m %H.%M.%S"), dataTuple[0], dataTuple[1], dataTuple[2])
+        sendToAzure(strftime("%A %B %-m, %Y, %H.%M.%S"), dataTuple[0], dataTuple[1], dataTuple[2])
         resetTuple()
     return
 
