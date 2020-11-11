@@ -21,8 +21,8 @@ body{
 	border: solid #808080;
 }
 
-img{
-	display: display: inline-block
+.img-class {
+	width: 95%;
 }
 
 .reading {
@@ -37,4 +37,6 @@ img{
 .graph {
 	border: solid 1px;
 	border-radius: 10px;
+	display: inline-block
+	width: 50%;
 }
