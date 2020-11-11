@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>DHT Data Sensor</title>
+    <title>ESP Data Sensor</title>
     <link rel="stylesheet" href='../static/styles.css'/>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
@@ -34,7 +34,6 @@
 
 <script src="../static/raphael-2.1.4.min.js"></script>
 <script src="../static/justgage.js"></script>
-<script src="../st">/javascript.js"></script>
 <script>
 	var g1, g2;
 	document.addEventListener("DOMContentLoaded", function(event) {
@@ -61,4 +60,8 @@
 		});
 
 	});
+
+	setTimeout(function(){
+		window.location.reload(1);
+	}, 30000);
 </script>
