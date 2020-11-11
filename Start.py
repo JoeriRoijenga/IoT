@@ -1,5 +1,5 @@
 import WebServer.run as server
-# import data_handler
+import data_handler
 from threading import Thread
 
 if __name__ == '__main__':
