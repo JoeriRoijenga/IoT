@@ -27,10 +27,11 @@ def getLastData():
 		time = str(row[0])
 		temp = row[1]
 		hum = row[2]
+		press = row[3]
 	
 	disconnectDB(conn)
 	
-	return time, temp, hum
+	return time, temp, hum, press
 
 
 def getHistData (numSamples):
@@ -78,6 +79,7 @@ def index():
 	  'time'		: time,
       'temp'		: temp,
       'hum'			: hum,
+      'press'			: press,
       'numSamples'	: numSamples
 	}
 
