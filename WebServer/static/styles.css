@@ -25,11 +25,16 @@ img{
 	display: display: inline-block
 }
 
-#g1, #g2 {
+.reading {
 	border-radius: 10px;
     border: solid 1px;
     width: 200px;
 	height: 160px;
 	display: inline-block;
 	margin: 1em;
+}
+
+.graph {
+	border: solid 1px;
+	border-radius: 10px;
 }

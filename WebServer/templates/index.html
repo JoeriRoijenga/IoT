@@ -29,20 +29,25 @@
 
 <body>
 	<h1>ESP Sensor Data </h1>
-    <div id="g1"></div>
-    <div id="g2"></div>
+    <div id="g1" class="reading"></div>
+    <div id="g2" class="reading"></div>
     <hr>
 	<h3> Last Sensors Reading: {{ time }} ==> <a href="/" class="button">REFRESH</a></h3>	
 	<hr>
 	<h3> HISTORICAL DATA </h3>
-		<p> Enter number of samples to retrieve:
-		<form method="POST">
-			<input name="numSamples" value= {{numSamples}}>
-			<input type="submit">
-		</form></p>
-		<hr>
+	<p> Enter number of samples to retrieve:
+	<form method="POST">
+		<input name="numSamples" value= {{numSamples}}>
+		<input type="submit">
+	</form></p>
+	<hr>
+
+	<div class="graph">
 		<img src="/plot/temp" alt="Image Placeholder" width="49%">
+	</div>
+	<div class="graph">
 		<img src="/plot/hum" alt="Image Placeholder" width="49%">  
+	</div>
 </body>
 
 </html>
