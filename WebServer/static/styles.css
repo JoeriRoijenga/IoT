@@ -18,7 +18,7 @@ img{
 	display: display: inline-block
 }
 
-#g1 #g2 {
+#g1, #g2 {
 	border-radius: 10px;
     border: solid;
 }
