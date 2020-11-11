@@ -102,6 +102,8 @@ def my_form_post():
     
     time, temp, hum, press = getLastData()
     
+    print("samples: " + numSamples)
+
     templateData = {
 	  'time'		: strftime("%H:%M:%S"),
       'temp'		: temp,
