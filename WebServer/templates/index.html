@@ -13,8 +13,6 @@
     <div id="g2" class="reading"></div>
     <div id="g3" class="reading"></div>
     <hr>
-	<h3> Last Sensors Reading: {{ time }} ==> <a href="/" class="button">REFRESH</a></h3>	
-	<hr>
 	<h3> HISTORICAL DATA </h3>
 	<p> Enter number of samples to retrieve:
 	<form method="POST">
@@ -34,7 +32,8 @@
 	</div>
 
 	<div class="footer">
-	  	<p>Footer</p>
+	  	<div class="last-reading">Last Reading: {{time}}</div>
+	  	<div></div>
 	</div>
 </body>
 
