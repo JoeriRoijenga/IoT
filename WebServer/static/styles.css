@@ -56,4 +56,6 @@ body{
 .last-reading {
 	text-align: left;
 	top: 50%;
+	margin-left: 5px;
+	margin-top: 15px;
 }
