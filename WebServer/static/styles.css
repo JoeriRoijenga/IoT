@@ -33,6 +33,7 @@ body{
 	height: 160px;
 	display: inline-block;
 	margin: 1em;
+	background-color: #ffffff;
 }
 
 .graph {
@@ -41,6 +42,7 @@ body{
 	display: inline-block;
 	width: 30%;
 	margin: 5px;
+	background-color: #ffffff;
 }
 
 .footer {
