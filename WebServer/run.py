@@ -101,7 +101,7 @@ def my_form_post():
 	  'time'		: time,
       'temp'		: temp,
       'hum'			: hum,
-      'press'			: press,
+      'press'		: press,
       'numSamples'	: numSamples
 	}
 
