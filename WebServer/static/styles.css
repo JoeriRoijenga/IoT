@@ -53,9 +53,15 @@ body{
   height: 50px;
 }
 
-.last-reading {
-	text-align: left;
-	top: 50%;
+.footer-item {
 	margin-left: 5px;
 	margin-top: 15px;
+}
+
+.last-reading {
+	text-align: left;
+}
+
+.sample-amount {
+	text-align: right;
 }
