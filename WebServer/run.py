@@ -3,6 +3,7 @@ from matplotlib.figure import Figure
 import io
 from time import strftime
 from flask import Flask, render_template, send_file, make_response, request
+import sqlite3
 
 app = Flask(__name__)
 
