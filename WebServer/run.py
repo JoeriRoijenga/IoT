@@ -2,13 +2,9 @@ from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
 from matplotlib.figure import Figure
 import io
 from time import strftime
-
-
 from flask import Flask, render_template, send_file, make_response, request
+
 app = Flask(__name__)
-
-import sqlite3
-
 
 def connectDB():
 	conn = sqlite3.connect('espData.db')
@@ -69,76 +65,6 @@ def maxRowsTable():
 
 	return maxNumberRows
 
-#initialize global variables
-global numSamples
-numSamples = maxRowsTable()
-if (numSamples > 101):
-	numSamples = 100
-	
-	
-# main route 
-@app.route("/")
-def index():
-	# time, temp, hum, press = getLastData()
-	# templateData = {
-	#   'time'		: time,
- #      'temp'		: temp,
- #      'hum'			: hum,
- #      'press'		: press,
- #      'numSamples'	: numSamples
-	# }
-
-	return templateData()
-
-
-@app.route('/', methods=['POST'])
-def my_form_post():
-    global numSamples 
-    numSamples = int (request.form['numSamples'])
-    numMaxSamples = maxRowsTable()
-    
-    if (numSamples > numMaxSamples):
-        numSamples = (numMaxSamples-1)
-    
-    time, temp, hum, press = getLastData()
-    
- #    templateData = {
-	#   'time'		: strftime("%H:%M:%S"),
- #      'temp'		: temp,
- #      'hum'			: hum,
- #      'press'		: press,
- #      'numSamples'	: numSamples
-	# }
-
-    return templateData()
-	
-
-def templateData():
-    time, temp, hum, press = getLastData()
-
-    templateData = {
-        'time'		: strftime("%H:%M:%S"),
-       	'temp'		: temp,
-        'hum'		: hum,
-        'press'		: press,
-        'numSamples': numSamples
-    }
-
-    return render_template('index.html', **templateData)
-	
-@app.route('/plot/temp')
-def plot_temp():
-	return createResponse(getHistData(numSamples)[1], "Temperature [°C]")
-
-
-@app.route('/plot/hum')
-def plot_hum():
-	return createResponse(getHistData(numSamples)[2], "Humidity [%]")
-
-@app.route('/plot/press')
-def plot_press():
-	return createResponse(getHistData(numSamples)[3], "Pressure [pHa]")
-
 
 def createResponse(ys, title = "default"):
 	fig = Figure()
@@ -158,6 +84,59 @@ def createResponse(ys, title = "default"):
 	response.mimetype = 'image/png'
 
 	return response
+
+
+def templateData():
+    time, temp, hum, press = getLastData()
+
+    templateData = {
+        'time'		: strftime("%H:%M:%S"),
+       	'temp'		: temp,
+        'hum'		: hum,
+        'press'		: press,
+        'numSamples': numSamples
+    }
+
+    return render_template('index.html', **templateData)
+
+
+#initialize global variables
+global numSamples
+numSamples = maxRowsTable()
+if (numSamples > 101):
+	numSamples = 100
+	
+	
+# main route 
+@app.route("/")
+def index():
+	return templateData()
+
+
+@app.route('/', methods=['POST'])
+def my_form_post():
+    global numSamples 
+    numSamples = int (request.form['numSamples'])
+    numMaxSamples = maxRowsTable()
+    
+    if (numSamples > numMaxSamples):
+        numSamples = (numMaxSamples-1)
+    
+    return templateData()
+	
+
+@app.route('/plot/temp')
+def plot_temp():
+	return createResponse(getHistData(numSamples)[1], "Temperature [°C]")
+
+
+@app.route('/plot/hum')
+def plot_hum():
+	return createResponse(getHistData(numSamples)[2], "Humidity [%]")
+
+@app.route('/plot/press')
+def plot_press():
+	return createResponse(getHistData(numSamples)[3], "Pressure [pHa]")
 
 
 if __name__ == "__main__":
