@@ -104,8 +104,8 @@ def templateData():
 #initialize global variables
 global numSamples
 numSamples = maxRowsTable()
-if (numSamples > 101):
-	numSamples = 100
+if (numSamples >= 51):
+	numSamples = 50
 	
 	
 # main route 

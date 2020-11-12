@@ -57,7 +57,7 @@ def on_message(client, userdata, msg):
     if msg.topic == pressure_topic:
         dataTuple[2] = str(msg.payload)[2:-1]
     if dataTuple[0] != -1 and dataTuple[1] != -1 and dataTuple[2] != -1:
-        writeToDb(strftime("%Y-%m-%d %H:%M:%S"), dataTuple[0], dataTuple[1], dataTuple[2])
+        writeToDb(theTime, dataTuple[0], dataTuple[1], dataTuple[2])
         sendToAzure(strftime("%A %B %-m, %Y, %H.%M.%S"), dataTuple[0], dataTuple[1], dataTuple[2])
         resetTuple()
     return
@@ -97,8 +97,12 @@ def start():
     client.on_connect = on_connect
     client.on_message = on_message
 
+    # Start SSL
+    client.tls_set("ca.crt", tls_version=ssl.PROTOCOL_TLSv1_2)
+    # End SSL
+
     client.username_pw_set("admin", "admin")
-    client.connect("192.168.2.24", 1883, 60)
+    client.connect("192.168.2.24", 8883, 60)
 
     # Blocking call that processes network traffic, dispatches callbacks and
     # handles reconnecting.
