@@ -1,6 +1,7 @@
 from time import strftime
 import paho.mqtt.client as mqtt
 import sqlite3
+import ssl
 
 # Start Azure
 from decimal import Decimal
