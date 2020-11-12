@@ -99,7 +99,7 @@ def start():
     client.on_message = on_message
 
     # Start SSL
-    client.tls_set("ca.crt", tls_version=ssl.PROTOCOL_TLSv1_2)
+    client.tls_set("ca.crt", tls_version=ssl.PROTOCOL_TLSv1)
     # End SSL
 
     client.username_pw_set("admin", "admin")
