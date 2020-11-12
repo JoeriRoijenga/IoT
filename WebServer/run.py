@@ -115,8 +115,8 @@ def my_form_post():
 	
 @app.route('/plot/temp')
 def plot_temp():
-	times, temps, hums, press = getHistData(numSamples)
-	ys = temps
+	# times, temps, hums, press = getHistData(numSamples)
+	ys = getHistData(numSamples)[1]
 	fig = Figure()
 	
 	axis = fig.add_subplot(1, 1, 1)
@@ -138,8 +138,8 @@ def plot_temp():
 
 @app.route('/plot/hum')
 def plot_hum():
-	times, temps, hums, press = getHistData(numSamples)
-	ys = hums
+	# times, temps, hums, press = getHistData(numSamples)
+	ys = ys = getHistData(numSamples)[2]
 	fig = Figure()
 	
 	axis = fig.add_subplot(1, 1, 1)
