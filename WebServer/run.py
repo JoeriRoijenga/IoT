@@ -79,16 +79,7 @@ if (numSamples > 101):
 # main route 
 @app.route("/")
 def index():
-	time, temp, hum, press = getLastData()
-	templateData = {
-	  'time'		: time,
-      'temp'		: temp,
-      'hum'			: hum,
-      'press'		: press,
-      'numSamples'	: numSamples
-	}
-
-	return render_template('index.html', **templateData)
+	return templateData()
 
 
 @app.route('/', methods=['POST'])
@@ -99,8 +90,12 @@ def my_form_post():
     
     if (numSamples > numMaxSamples):
         numSamples = (numMaxSamples-1)
-    
-    time, temp, hum, press = getLastData()
+
+    return templateData()
+	
+
+def templateData():
+	time, temp, hum, press = getLastData()
     
     templateData = {
 	  'time'		: strftime("%H:%M:%S"),
@@ -112,60 +107,25 @@ def my_form_post():
 
     return render_template('index.html', **templateData)
 	
-	
 @app.route('/plot/temp')
 def plot_temp():
-	# times, temps, hums, press = getHistData(numSamples)
-	ys = getHistData(numSamples)[1]
-	fig = Figure()
-	
-	axis = fig.add_subplot(1, 1, 1)
-	axis.set_title("Temperature [°C]")
-	axis.set_xlabel("Samples")
-	axis.grid(True)
-	xs = range(numSamples)
-	axis.plot(xs, ys)
-	
-	canvas = FigureCanvas(fig)
-	output = io.BytesIO()
-	canvas.print_png(output)
-	
-	response = make_response(output.getvalue())
-	response.mimetype = 'image/png'
-	
-	return response
+	return createResponse(getHistData(numSamples)[1], "Temperature [°C]")
 
 
 @app.route('/plot/hum')
 def plot_hum():
-	# times, temps, hums, press = getHistData(numSamples)
-	ys = ys = getHistData(numSamples)[2]
-	fig = Figure()
-	
-	axis = fig.add_subplot(1, 1, 1)
-	axis.set_title("Humidity [%]")
-	axis.set_xlabel("Samples")
-	axis.grid(True)
-	xs = range(numSamples)
-	axis.plot(xs, ys)
-	
-	canvas = FigureCanvas(fig)
-	output = io.BytesIO()
-	canvas.print_png(output)
-	
-	response = make_response(output.getvalue())
-	response.mimetype = 'image/png'
-	
-	return response
+	return createResponse(getHistData(numSamples)[2], "Humidity [%]")
 
 @app.route('/plot/press')
 def plot_press():
-	# times, temps, hums, press = getHistData(numSamples)[3]
-	ys = getHistData(numSamples)[3]
+	return createResponse(getHistData(numSamples)[3], "Pressure [pHa]")
+
+
+def createResponse(ys, title = "default"):
 	fig = Figure()
 	
 	axis = fig.add_subplot(1, 1, 1)
-	axis.set_title("Pressure [hPa]")
+	axis.set_title(title)
 	axis.set_xlabel("Samples")
 	axis.grid(True)
 	xs = range(numSamples)
@@ -177,7 +137,7 @@ def plot_press():
 	
 	response = make_response(output.getvalue())
 	response.mimetype = 'image/png'
-	
+
 	return response
 
 
