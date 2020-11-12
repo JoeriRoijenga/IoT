@@ -114,15 +114,15 @@ def my_form_post():
 	
 
 def templateData():
-	time, temp, hum, press = getLastData()
-    
+    time, temp, hum, press = getLastData()
+
     templateData = {
-		'time'		: strftime("%H:%M:%S"),
-      	'temp'		: temp,
-      	'hum'		: hum,
-      	'press'		: press,
-      	'numSamples': numSamples
-	}
+        'time'		: strftime("%H:%M:%S"),
+       	'temp'		: temp,
+        'hum'		: hum,
+        'press'		: press,
+        'numSamples': numSamples
+    }
 
     return render_template('index.html', **templateData)
 	
