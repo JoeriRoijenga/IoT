@@ -117,7 +117,7 @@ def templateData():
 	time, temp, hum, press = getLastData()
     
     templateData = {
-  		'time'		: strftime("%H:%M:%S"),
+		'time'		: strftime("%H:%M:%S"),
       	'temp'		: temp,
       	'hum'		: hum,
       	'press'		: press,
