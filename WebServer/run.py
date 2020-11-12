@@ -79,6 +79,15 @@ if (numSamples > 101):
 # main route 
 @app.route("/")
 def index():
+	# time, temp, hum, press = getLastData()
+	# templateData = {
+	#   'time'		: time,
+ #      'temp'		: temp,
+ #      'hum'			: hum,
+ #      'press'		: press,
+ #      'numSamples'	: numSamples
+	# }
+
 	return templateData()
 
 
@@ -90,6 +99,16 @@ def my_form_post():
     
     if (numSamples > numMaxSamples):
         numSamples = (numMaxSamples-1)
+    
+    time, temp, hum, press = getLastData()
+    
+ #    templateData = {
+	#   'time'		: strftime("%H:%M:%S"),
+ #      'temp'		: temp,
+ #      'hum'			: hum,
+ #      'press'		: press,
+ #      'numSamples'	: numSamples
+	# }
 
     return templateData()
 	
@@ -98,11 +117,11 @@ def templateData():
 	time, temp, hum, press = getLastData()
     
     templateData = {
-	  'time'		: strftime("%H:%M:%S"),
-      'temp'		: temp,
-      'hum'			: hum,
-      'press'		: press,
-      'numSamples'	: numSamples
+  		'time'		: strftime("%H:%M:%S"),
+      	'temp'		: temp,
+      	'hum'		: hum,
+      	'press'		: press,
+      	'numSamples': numSamples
 	}
 
     return render_template('index.html', **templateData)
