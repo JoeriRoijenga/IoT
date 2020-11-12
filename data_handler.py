@@ -55,7 +55,6 @@ def on_message(client, userdata, msg):
         dataTuple[0] = str(msg.payload)[2:-1]
     if msg.topic == humidity_topic:
         dataTuple[1] = str(msg.payload)[2:-1]
-        #return
     if msg.topic == pressure_topic:
         dataTuple[2] = str(msg.payload)[2:-1]
     if dataTuple[0] != -1 and dataTuple[1] != -1 and dataTuple[2] != -1:
