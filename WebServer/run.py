@@ -135,6 +135,7 @@ def plot_temp():
 	
 	return response
 
+
 @app.route('/plot/hum')
 def plot_hum():
 	times, temps, hums, press = getHistData(numSamples)
@@ -159,8 +160,8 @@ def plot_hum():
 
 @app.route('/plot/press')
 def plot_press():
-	times, temps, hums, press = getHistData(numSamples)
-	ys = press
+	# times, temps, hums, press = getHistData(numSamples)[3]
+	ys = getHistData(numSamples)[3]
 	fig = Figure()
 	
 	axis = fig.add_subplot(1, 1, 1)
