@@ -101,7 +101,7 @@ def start():
 
     # Start SSL
     client.tls_set("ca.crt", tls_version=ssl.PROTOCOL_TLSv1_2)
-    client.tls_insecure_set(True)
+    client.tls_insecure_set(False)
     # End SSL
 
     client.username_pw_set("admin", "admin")
