@@ -3,6 +3,7 @@ import paho.mqtt.client as mqtt
 import sqlite3
 import ssl
 
+
 # Start Azure
 from decimal import Decimal
 import random
@@ -100,6 +101,7 @@ def start():
 
     # Start SSL
     client.tls_set("ca.crt", tls_version=ssl.PROTOCOL_TLSv1_2)
+    client.tls_insecure_set(True)
     # End SSL
 
     client.username_pw_set("admin", "admin")
