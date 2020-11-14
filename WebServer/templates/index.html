@@ -55,6 +55,9 @@
 <script src="../static/justgage.js"></script>
 <script>
 	var g1, g2, g3;
+	var temperature = '{{temp}}';
+	console.log(temperature);
+	
 	document.addEventListener("DOMContentLoaded", function(event) {
 		g1 = new JustGage({
 			id: "g1",
