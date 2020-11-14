@@ -12,7 +12,7 @@ import time
 from azure.iot.device import IoTHubDeviceClient, Message
 
 CONNECTION_STRING = "HostName=IOT11-hub-Roijenga.azure-devices.net;DeviceId=pi-oit-roijenga;SharedAccessKey=LN85DpNmgw3IrpuCVxN4ZKqmJBUnzV34GlYVuErI5nI="
-MSG_TXT = "{\"deviceId\": \"Raspberry Pi (Joeri)\",\"temperature\": %f,\"humidity\": %f, \"pressure\": %f, \"timestamp\": \"%s\"}"
+MSG_TXT = "{\"deviceId\": \"Raspberry Pi (Joeri)\",\"temperature\": %f,\"humidity\": %f, \"pressure\": %f, \"timestamp_pi\": \"%s\"}"
 
 # End Azure
 
