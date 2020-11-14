@@ -99,12 +99,12 @@ def start():
     client.on_message = on_message
 
     # Start SSL
-    # client.tls_set("ca.crt", tls_version=ssl.PROTOCOL_TLSv1_2)
-    # client.tls_insecure_set(False)
+    client.tls_set("ca.crt", tls_version=ssl.PROTOCOL_TLSv1_2)
+    client.tls_insecure_set(False)
     # End SSL
 
     client.username_pw_set("admin", "admin")
-    client.connect("127.0.0.1", 1883, 60)
+    client.connect("127.0.0.1", 8883, 60)
 
     # Blocking call that processes network traffic, dispatches callbacks and
     # handles reconnecting.
