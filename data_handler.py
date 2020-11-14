@@ -104,7 +104,7 @@ def start():
     # End SSL
 
     client.username_pw_set("admin", "admin")
-    client.connect("127.0.0.1", 8883, 60)
+    client.connect("192.168.2.25", 8883, 60)
 
     # Blocking call that processes network traffic, dispatches callbacks and
     # handles reconnecting.
