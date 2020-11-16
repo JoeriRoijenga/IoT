@@ -62,16 +62,16 @@
 		g3 = createGage("g3", '{{press}}', 1000, 1050, "Pressure", "hPa");
 	});
 
-	function createGage(id1, value1, min1, max1, title1, label1) {
+	function createGage(newId, newValue, newMin, newMax, newTitle, newLabel) {
 		return new JustGage({
-			id: id1,
-			value: value1,
+			id: newId,
+			value: newValue,
 			valueFontColor: "black",
 			titleFontColor: "black",
-			min: min1,
-			max: max1,
-			title: title1,
-			label: label1
+			min: newMin,
+			max: newMax,
+			title: newTitle,
+			label: newLabel
 		});
 	}
 
