@@ -57,40 +57,23 @@
 	var g1, g2, g3;
 
 	document.addEventListener("DOMContentLoaded", function(event) {
-		g1 = new JustGage({
-			id: "g1",
-			value: '{{temp}}',
-			valueFontColor: "black",
-			titleFontColor: "black",
-			min: -10,
-			max: 50,
-			title: "Temperature",
-			label: "Celcius"
-		});
-
-		g2 = new JustGage({
-			id: "g2",
-			value: '{{hum}}',
-			valueFontColor: "black",
-			titleFontColor: "black",
-			min: 0,
-			max: 100,
-			title: "Humidity",
-			label: "%"
-		});
-
-		g3 = new JustGage({
-			id: "g3",
-			value: '{{press}}',
-			valueFontColor: "black",
-			titleFontColor: "black",
-			min: 1000,
-			max: 1050,
-			title: "Pressure",
-			label: "hPa"
-		});
-
+		g1 = createGage("g1", '{{temp}}', -10, 50, "Temperature", "Celcius");
+		g2 = createGage("g2", '{{hum}}', 0, 100, "Humidity", "%");
+		g3 = createGage("g3", '{{press}}', 1000, 1050, "Pressure", "hPa");
 	});
+
+	function createGage(id1, value1, min1, max1, title1, label1) {
+		return new JustGage({
+			id: id1,
+			value: value1,
+			valueFontColor: "black",
+			titleFontColor: "black",
+			min: min1,
+			max: max1,
+			title: title1,
+			label: label1
+		});
+	}
 
 	document.getElementById("numSamplesSelect").value = numSamples;
 
